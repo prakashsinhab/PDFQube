@@ -1,0 +1,25 @@
+import java.util.List;
+
+import org.sonar.wsclient.Host;
+import org.sonar.wsclient.Sonar;
+import org.sonar.wsclient.connectors.HttpClient4Connector;
+import org.sonar.wsclient.services.Metric;
+import org.sonar.wsclient.services.MetricQuery;
+
+public class SonarAPI {
+	public static void main(String args[]) {
+
+		String url = "http://localhost:9000";
+		String login = "admin";
+		String password = "admin";
+		Sonar sonar = new Sonar(new HttpClient4Connector(new Host(url, login,
+				password)));
+
+		List<Metric> smq = sonar.findAll(MetricQuery.all());
+		System.out.println(smq);
+
+		for (int i = 0; i < smq.size(); i++) {
+			System.out.println(smq.get(i));
+		}
+	}
+}
