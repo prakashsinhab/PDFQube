@@ -21,5 +21,23 @@ public class SonarAPI {
 		for (int i = 0; i < smq.size(); i++) {
 			System.out.println(smq.get(i));
 		}
+		
+		
+		
+		// Fetching all violations in a project
+		ViolationQuery violationQuery = ViolationQuery.createForResource("org:jpetstore");
+		violationQuery.setDepth(-1);
+
+		violationQuery.setSeverities("BLOCKER", "CRITICAL", "MAJOR", "MINOR");
+		List<Violation> violations = sonar.findAll(violationQuery);
+		for (Violation violation : violations) {
+			System.out.println(violation.getMessage() + " " + violation.getPriority() + " " + violation.getResourceKey());
+			
+		}
+		
+		
+		
+		
+		
 	}
 }
