@@ -1,6 +1,8 @@
 PDFQube
 =======
 
+NOTE: Still in the development phase. Will be posted on reddit once the plugin is completed.
+
 Open source Sonar PDF plugin for ant projects
 
 /* References:
@@ -9,5 +11,7 @@ Open source Sonar PDF plugin for ant projects
 2. Add required jars(commons-codec-1.6.jar, commons-logging-1.1.1.jar, httpclient-4.2.1.jar, httpcore-4.2.1.jar) to the classpath
 3. Run the example code
 */
+
+
 
 
