@@ -9,35 +9,63 @@ import org.sonar.wsclient.services.MetricQuery;
 public class SonarAPI {
 	public static void main(String args[]) {
 
-		String url = "http://localhost:9000";
-		String login = "admin";
-		String password = "admin";
-		Sonar sonar = new Sonar(new HttpClient4Connector(new Host(url, login,
-				password)));
 
-		List<Metric> smq = sonar.findAll(MetricQuery.all());
-		System.out.println(smq);
+		try {
+			String url = "http://localhost:9000";
+			String login = "admin";
+			String password = "admin";
 
-		for (int i = 0; i < smq.size(); i++) {
-			System.out.println(smq.get(i));
-		}
-		
-		
-		
-		// Fetching all violations in a project
-		ViolationQuery violationQuery = ViolationQuery.createForResource("org:jpetstore");
-		violationQuery.setDepth(-1);
-
-		violationQuery.setSeverities("BLOCKER", "CRITICAL", "MAJOR", "MINOR");
-		List<Violation> violations = sonar.findAll(violationQuery);
-		for (Violation violation : violations) {
-			System.out.println(violation.getMessage() + " " + violation.getPriority() + " " + violation.getResourceKey());
+			HttpClient client = new HttpClient();
+			HttpMethod method = new GetMethod("http://localhost:9000/sonar/api/server/index?format=json");
+			int status = 0;
+			status = client.executeMethod(method);
 			
+			Sonar sonar = new Sonar(new HttpClient4Connector(new Host(url,
+					login, password)));
+
+			ViolationQuery violationQuery = ViolationQuery
+					.createForResource("jpetstore");
+			violationQuery.setDepth(-1);
+
+			violationQuery.setSeverities("BLOCKER", "CRITICAL", "MAJOR",
+					"MINOR");
+			List<Violation> violations = sonar.findAll(violationQuery);
+/*			for (Violation violation : violations) {
+				System.out.println(violation.getPriority() + " | "
+						+ violation.getResourceKey());
+				
+
+			}*/
+			 Resource struts =
+					  sonar.find(ResourceQuery.createForMetrics("jpetstore", "coverage",
+					  "lines", "violations", "duplicated_lines"));
+					  System.out.println(struts
+					  .getMeasure("lines").getIntValue());
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
+
+		/*
+		 * Resource struts =
+		 * sonar.find(ResourceQuery.createForMetrics("jpetstore", "coverage",
+		 * "lines", "violations", "duplicated_lines"));
+		 * System.out.println(struts
+		 * .getMeasure("duplicated_lines").getIntValue());
+		 */
+
+		/*
+		 * violation.getMessage() - 1 duplicated blocks of code.
+		 * violation.getPriority() - returns the severity level. Ex: MAJOR,
+		 * MINOR, CRITICAL, BLOCKER. violation.getResourceKey() - returns the
+		 * package name and class name, where the issue persists.
+		 * violation.getResourceName() - returns only the class name, where the
+		 * issue persists. violation.
+		 */
+
 	}
+		
+		
+	
 }
