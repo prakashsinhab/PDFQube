@@ -37,7 +37,7 @@ public class PDFQubePostJob implements PostJob {
 					"duplicated_lines", "ncloc", "packages", "classes",
 					"functions"));
 
-			String fileName = "C:\\Temp\\" + project.getName() + ".pdf";
+			String fileName = project.getName() + ".pdf";
 			OutputStream file = new FileOutputStream(new File(fileName));
 
 			Document document = new Document();
