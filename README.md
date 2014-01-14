@@ -21,5 +21,7 @@ Step 4: Restart sonar instance
 */
 
 
+Note: Drop a mail to nithin.infinite@gmail.com in case of any issues/concerns.
+
 
 
