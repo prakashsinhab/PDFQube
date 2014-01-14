@@ -3,7 +3,7 @@ PDFQube
 
 Open source Sonar PDF plugin for ant projects
 
-Note: Still in alpha phase, watch out for more updates.
+Note: Still in alpha phase and thus NEEDS LOT OF ENHANCEMENTS, watch out for more updates.
 
 
 How to use:
