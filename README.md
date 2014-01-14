@@ -1,7 +1,9 @@
 PDFQube
 =======
 
-Open source Sonar PDF plugin for ant projects
+Open source Sonar PDF plugin for ant projects.
+The goal of this project was to create a sonar pdf reporting plugin for ant projects, since there was no free plugins avaiable for ant projects.
+
 
 Note: Still in alpha phase and thus NEEDS LOT OF ENHANCEMENTS, watch out for more updates.
 
