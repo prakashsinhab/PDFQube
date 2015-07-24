@@ -27,7 +27,7 @@ public class CycloComplexAction {
 		HttpClient client = new HttpClient();
 		HttpMethod method = new GetMethod(
 
-				"http://localhost:9000/api/resources?resource="
+				"http://localhost:9000/sonar/api/resources?resource="
 						+ key
 						+ "&metrics=function_complexity&scopes=FIL&depth=-1&limit=10&format=xml");
 		Font fontbold = FontFactory.getFont("Times-Roman", 18, Font.BOLD);
@@ -98,7 +98,7 @@ public class CycloComplexAction {
 		HttpClient client = new HttpClient();
 		HttpMethod method = new GetMethod(
 
-				"http://localhost:9000/api/resources?resource="
+				"http://localhost:9000/sonar/api/resources?resource="
 						+ key
 						+ "&metrics=class_complexity&scopes=FIL&depth=-1&limit=10&format=xml");
 		Font fontbold = FontFactory.getFont("Times-Roman", 18, Font.BOLD);
@@ -169,7 +169,7 @@ public class CycloComplexAction {
 		HttpClient client = new HttpClient();
 		HttpMethod method = new GetMethod(
 
-				"http://localhost:9000/api/resources?resource="
+				"http://localhost:9000/sonar/api/resources?resource="
 						+ key
 						+ "&metrics=file_complexity&scopes=FIL&depth=-1&limit=10&format=xml");
 		Font fontbold = FontFactory.getFont("Times-Roman", 18, Font.BOLD);

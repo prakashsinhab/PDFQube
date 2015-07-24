@@ -1,6 +1,7 @@
 package com.pdfqube.postjob;
 
 import java.io.ByteArrayInputStream;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -96,10 +97,14 @@ public class PDFQubePostJob implements PostJob {
 			Document document = new Document();
 			PdfWriter.getInstance(document, report);
 
+			if(struts == null) return;
+			
 			String lines = struts.getMeasure("lines").getIntValue().toString();
 			String codelines = struts.getMeasure("ncloc").getValue().toString();
-			String noofpackages = struts.getMeasure("packages").getValue()
-					.toString();
+			String noofpackages = "";
+
+			/*String noofpackages = struts.getMeasure("packages").getValue()
+					.toString();*/
 			String noofclasses = struts.getMeasure("classes").getValue()
 					.toString();
 			String nooffunctions = struts.getMeasure("functions").getValue()
@@ -126,7 +131,7 @@ public class PDFQubePostJob implements PostJob {
 			document.add(new Paragraph("Packages: " + noofpackages));
 			document.add(new Paragraph("Classes: " + noofclasses));
 			document.add(new Paragraph("Funtions: " + nooffunctions));
-			document.add(new Paragraph("Violations: " + noofviolations));
+			document.add(new Paragraph("Issues: " + noofviolations));
 			document.add(new Paragraph("Technical Debt: " + techDebt));
 			document.add(new Paragraph("Files: " + noofFiles));
 
@@ -186,7 +191,7 @@ public class PDFQubePostJob implements PostJob {
 		HttpClient client = new HttpClient();
 		HttpMethod method = new GetMethod(
 
-				"http://localhost:9000/api/resources?resource="
+				"http://localhost:9000/sonar/api/resources?resource="
 						+ key
 						+ "&depth=0&metrics="
 						+ violation
@@ -283,7 +288,7 @@ public class PDFQubePostJob implements PostJob {
 		HttpClient client = new HttpClient();
 		HttpMethod method = new GetMethod(
 
-				"http://localhost:9000/api/resources?resource="
+				"http://localhost:9000/sonar/api/resources?resource="
 						+ key
 						+ "&metrics=weighted_violations&scopes=FIL&depth=-1&limit=10&format=xml");
 		Font fontbold = FontFactory.getFont("Times-Roman", 18, Font.BOLD);
@@ -357,7 +362,7 @@ public class PDFQubePostJob implements PostJob {
 	 * public void getAllViolatedRules(Document document, String key) {
 	 * HttpClient client = new HttpClient(); HttpMethod method = new GetMethod(
 	 * 
-	 * "http://localhost:9000/api/resources?resource="+ key +
+	 * "http://localhost:9000//api/resources?resource="+ key +
 	 * "&depth=0&metrics=major_violations,minor_violations,critical_violations,blocker_violations,info_violations&filter_rules=false&filter_rules_cats=true&format=xml&limit=10&rule_priorities=INFO,MINOR,MAJOR,CRITICAL,BLOCKER"
 	 * );
 	 * 

@@ -6,7 +6,7 @@ public class Constant {
 	public static final String AUTHOR = "Created by PDF Qube Plugin";
 
 	// Hardcoded the default details for now
-	public static final String URL = "http://localhost:9000";
+	public static final String URL = "http://localhost:9000/sonar";
 	public static final String USERNAME = "admin";
 	public static final String PASSWORD = "admin";
 

@@ -35,7 +35,7 @@ public class MostViolatedMajorRules {
 		HttpClient client = new HttpClient();
 		HttpMethod method = new GetMethod(
 
-				"http://localhost:9000/api/resources?resource="
+				"http://localhost:9000/sonar/api/resources?resource="
 						+ key
 						+ "&depth=0&metrics="
 						+ violation
